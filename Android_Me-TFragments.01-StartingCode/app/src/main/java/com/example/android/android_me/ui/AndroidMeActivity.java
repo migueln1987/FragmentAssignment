@@ -108,61 +108,59 @@ public class AndroidMeActivity extends AppCompatActivity {
                     headIndex++;
                     Log.d("showToastChangePic", "headIndex = " + headIndex);
 
-                    this.headPartFragment = new BodyPartFragment();
-                    this.headPartFragment.setImageIds(AndroidImageAssets.getHeads());
-                    this.headPartFragment.setDisplayIndex(headIndex);
-                    headFragmentManager = getSupportFragmentManager();
-                    headFragmentManager.beginTransaction().replace(R.id.head_container, headPartFragment).commit();
-                } else {
-                    headIndex = 0;
-                    Log.d("showToastChangePic", "headIndex = " + headIndex);
-                    this.headPartFragment = new BodyPartFragment();
-                    this.headPartFragment.setImageIds(AndroidImageAssets.getHeads());
-                    this.headPartFragment.setDisplayIndex(headIndex);
-                    headFragmentManager = getSupportFragmentManager();
-                    headFragmentManager.beginTransaction().replace(R.id.head_container, headPartFragment).commit();
-                }
-                break;
-            case R.id.body_container:
-                Toast.makeText(frameLayout.getContext(), "Body is pressed", Toast.LENGTH_SHORT).show();
-                if (bodyIndex < AndroidImageAssets.getBodies().size() - 1) {
-                    bodyIndex++;
-                    Log.d("showToastChangePic", "bodyIndex = " + bodyIndex);
-                    this.bodyPartFragment = new BodyPartFragment();
-                    this.bodyPartFragment.setImageIds(AndroidImageAssets.getBodies());
-                    this.bodyPartFragment.setDisplayIndex(bodyIndex);
-                    bodyFragmentManager = getSupportFragmentManager();
-                    bodyFragmentManager.beginTransaction().replace(R.id.body_container, bodyPartFragment).commit();
-                } else {
-                    bodyIndex = 0;
-                    Log.d("showToastChangePic", "bodyIndex = " + bodyIndex);
-                    this.bodyPartFragment = new BodyPartFragment();
-                    this.bodyPartFragment.setImageIds(AndroidImageAssets.getBodies());
-                    this.bodyPartFragment.setDisplayIndex(bodyIndex);
-                    bodyFragmentManager = getSupportFragmentManager();
-                    bodyFragmentManager.beginTransaction().replace(R.id.body_container, bodyPartFragment).commit();
-                }
-                break;
-            case R.id.leg_container:
-                Toast.makeText(frameLayout.getContext(), "Leg is pressed", Toast.LENGTH_SHORT).show();
-                if (legIndex < AndroidImageAssets.getLegs().size() - 1) {
-                    legIndex++;
-                    Log.d("showToastChangePic", "legIndex = " + legIndex);
-                    this.legPartFragment = new BodyPartFragment();
-                    this.legPartFragment.setImageIds(AndroidImageAssets.getLegs());
-                    this.legPartFragment.setDisplayIndex(legIndex);
-                    legFragmentManager = getSupportFragmentManager();
-                    legFragmentManager.beginTransaction().replace(R.id.leg_container, legPartFragment).commit();
-                } else {
-                    legIndex = 0;
-                    Log.d("showToastChangePic", "legIndex = " + legIndex);
-                    this.legPartFragment = new BodyPartFragment();
-                    this.legPartFragment.setImageIds(AndroidImageAssets.getLegs());
-                    this.legPartFragment.setDisplayIndex(legIndex);
-                    legFragmentManager = getSupportFragmentManager();
-                    legFragmentManager.beginTransaction().replace(R.id.leg_container, legPartFragment).commit();
-                }
-                break;
+                    extracted();
+            } else {
+                headIndex = 0;
+                Log.d("showToastChangePic", "headIndex = " + headIndex);
+                extracted();
+            }
+            break;
+        case R.id.body_container:
+            Toast.makeText(frameLayout.getContext(), "Body is pressed", Toast.LENGTH_SHORT).show();
+            if (bodyIndex < AndroidImageAssets.getBodies().size() - 1) {
+                bodyIndex++;
+                Log.d("showToastChangePic", "bodyIndex = " + bodyIndex);
+                extracted2();
+            } else {
+                bodyIndex = 0;
+                extracted2();
+            }
+            break;
+        case R.id.leg_container:
+            Toast.makeText(frameLayout.getContext(), "Leg is pressed", Toast.LENGTH_SHORT).show();
+            if (legIndex < AndroidImageAssets.getLegs().size() - 1) {
+                legIndex++;
+                extracted3();
+            } else {
+                legIndex = 0;
+                extracted3();
+            }
+            break;
         }
+    }
+
+    private void extracted3() {
+        Log.d("showToastChangePic", "legIndex = " + legIndex);
+        this.legPartFragment = new BodyPartFragment();
+        this.legPartFragment.setImageIds(AndroidImageAssets.getLegs());
+        this.legPartFragment.setDisplayIndex(legIndex);
+        legFragmentManager = getSupportFragmentManager();
+        legFragmentManager.beginTransaction().replace(R.id.leg_container, legPartFragment).commit();
+    }
+
+    private void extracted2() {
+        this.bodyPartFragment = new BodyPartFragment();
+        this.bodyPartFragment.setImageIds(AndroidImageAssets.getBodies());
+        this.bodyPartFragment.setDisplayIndex(bodyIndex);
+        bodyFragmentManager = getSupportFragmentManager();
+        bodyFragmentManager.beginTransaction().replace(R.id.body_container, bodyPartFragment).commit();
+    }
+
+    private void extracted() {
+        this.headPartFragment = new BodyPartFragment();
+        this.headPartFragment.setImageIds(AndroidImageAssets.getHeads());
+        this.headPartFragment.setDisplayIndex(headIndex);
+        headFragmentManager = getSupportFragmentManager();
+        headFragmentManager.beginTransaction().replace(R.id.head_container, headPartFragment).commit();
     }
 }

@@ -12,9 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.android.android_me.R;
-import com.example.android.android_me.data.AndroidImageAssets;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BodyPartFragment extends Fragment {
@@ -31,6 +29,7 @@ public class BodyPartFragment extends Fragment {
         fragmentPartImageView = view.findViewById(R.id.fragment_image);
         if(imageIds != null) {
             fragmentPartImageView.setImageDrawable((getResources().getDrawable(imageIds.get(displayIndex))));
+//            fragmentPartImageView.setOnClickListener();
         }
         return view;
     }
